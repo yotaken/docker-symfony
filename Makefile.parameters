@@ -1,5 +1,6 @@
-APP_BASE_URL=http://localhost
-DOCKER_COMPOSER_PN = local
+APP_BASE_URL=http://symfony.localhost
+KIBANA_BASE_URL=http://symfony.localhost:81
+KIBANA_APP_PORT=81
 BLUE   =\033[0;34m
 GREEN  =\033[0;32m
 END    =\033[0m

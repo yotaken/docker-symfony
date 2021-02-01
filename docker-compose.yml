@@ -11,6 +11,7 @@ services:
             MYSQL_DATABASE: symfony
             MYSQL_USER: symfony
             MYSQL_PASSWORD: symfony
+            DATABASE_URL: mysql://symfony:symfony@db:3306/symfony
         networks:
             - db
     php:
@@ -21,7 +22,7 @@ services:
         volumes:
             - ./symfony:/var/www/symfony:cached
             - ./logs/symfony:/var/www/symfony/var/log:cached
-        depends_on: 
+        depends_on:
             - db
         networks:
             - db
@@ -31,7 +32,7 @@ services:
         build: ./nginx
         ports:
             - "80:80"
-        depends_on: 
+        depends_on:
             - php
         networks:
             - php
@@ -52,7 +53,7 @@ services:
     logstash:
         container_name: logstash
         image: docker.elastic.co/logstash/logstash:7.9.3
-        depends_on: 
+        depends_on:
             - elasticsearch
         volumes:
             - ./elk/logstash/pipelines.yml:/usr/share/logstash/config/pipelines.yml:cached
@@ -63,7 +64,7 @@ services:
             - elk_stack
     kibana:
         container_name: kibana
-        depends_on: 
+        depends_on:
             - elasticsearch
         image: docker.elastic.co/kibana/kibana:7.9.3
         environment:
